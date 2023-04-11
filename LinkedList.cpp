@@ -3,25 +3,24 @@
 template<typename T>
 void LinkedList<T>::insertNode(T data)
 {
-    // Create the new Node.
     Node<T>* newNode = new Node<T>(data);
 
-    // Assign to head
+
     if (head == nullptr) {
         head = newNode;
+        count += 1;
         return;
+
     }
 
-    // Traverse till end of list
     Node<T>* temp = head;
     while (temp->next != nullptr) {
 
-        // Update temp
         temp = temp->next;
     }
 
-    // Insert at the last.
     temp->next = newNode;
+    count += 1;
 }
 
 template<typename T>
@@ -60,5 +59,35 @@ void LinkedList<T>::printlist()
         temp = temp->next;
     }
 }
+template<typename T>
+bool LinkedList<T>::deleteLastNode() {
+    if (head == nullptr) {
+        return false; 
+    }
+    if (head->next == nullptr) {
+        delete head;
+        head = nullptr;
+        count--;
+        return true;
+    }
+    Node<T>* currNode = head;
+    Node<T>* prevNode = nullptr;
+    while (currNode->next != nullptr) {
+        prevNode = currNode;
+        currNode = currNode->next;
+    }
+    prevNode->next = nullptr;
+    delete currNode;
+    count--;
+    return true;
+}
+
+template<typename T>
+int LinkedList<T>::getlistcount() {
+    cout <<"count=" << count;
+    return count;
+}
+
+
 
 
