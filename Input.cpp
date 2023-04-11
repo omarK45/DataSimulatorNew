@@ -2,8 +2,8 @@
 #include <fstream>
 using namespace std;
 
-int main() {
-    ifstream fin("C:\\Users\\zizor\\OneDrive\\Desktop\\trial\\tacos.txt"); // open input file
+int input() {
+    ifstream fin("C:\\Users\\Lenovo\\Desktop\\dataproject\\DataSimulator\\TEST1.txt"); // open input file
     if (fin.fail()) {
         cout << "Error opening input file\n";
         return 1;
@@ -37,6 +37,7 @@ int main() {
         fin >> arrival_times[i] >> burst_times[i] >> priorities[i];
         io_times[i] = new int[2];
         fin >> io_times[i][0] >> io_times[i][1];
+        cout <<"io times " << "(" << io_times[i][0] <<"," << io_times[i][1]<<")"<< endl ;
     }
 
     fin.close(); 
