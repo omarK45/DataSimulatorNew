@@ -8,7 +8,7 @@ Schedueler::Schedueler() {
 
 
 }
-int Schedueler::input() {
+int load() {
     ifstream fin("C:\\Users\\Lenovo\\Desktop\\Datastackadd\\test2.txt"); // open input file
     if (fin.fail()) {
         cout << "Error opening input file\n";

@@ -4,6 +4,6 @@ class Schedueler
 private:
 public:
 	Schedueler();
-	int input();
+	int load();
 };
 
