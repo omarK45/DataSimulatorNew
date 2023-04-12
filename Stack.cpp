@@ -20,8 +20,7 @@ int Stack<T>::pop() {
 	value = top->data;
 	top = top->next;
 	delete delptr;
-	return value; //?
-
+	return value;
 }
 template<typename T>
 int Stack<T>::count() {
