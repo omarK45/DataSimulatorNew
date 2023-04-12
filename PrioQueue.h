@@ -1,6 +1,5 @@
 #pragma once
 #include "Queue.h"
-#include "Processor.h"
 #include "PrioQueueNode.h"
 #include <iostream>
 using namespace std;
@@ -15,7 +14,7 @@ public:
 	void insert(T val, int priority)
 	{
 		PrioQueueNode<T>* temp, * q;
-		temp = new PQNode<T>(val, priority);
+		temp = new PrioQueueNode<T>(val, priority);
 		if (front == NULL || priority > front->priority)
 		{
 			temp->next = front;
@@ -39,13 +38,13 @@ public:
 			temp = front;
 			T data = temp->data;
 			front = front->next;
-			free(temp);
+			delete temp;
 			count--;
 			return data;
 		}
 		return NULL;
 	}
-	int size() 
+	int size()
 	{
 		return count;
 	}
@@ -79,4 +78,3 @@ public:
 		return front == NULL;
 	}
 };
-
