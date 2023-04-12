@@ -6,7 +6,7 @@ using namespace std;
 #include "stack.cpp"
 
 
-int main() {
+int stack() {
     Stack<int> s1;
     int item;
     for (int i = 0; i < 3; i++) {
@@ -21,4 +21,5 @@ int main() {
     cout << s1.pop() << " " << "was deleted from stack\n";
     s1.display();
     cout << s1.count();
+    return 0;
 }
