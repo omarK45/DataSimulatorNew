@@ -129,11 +129,13 @@
   <ItemGroup>
     <ClInclude Include="Node.h" />
     <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="Process.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Stack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LinkedList.cpp" />
+    <ClCompile Include="Process.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Input.cpp" />
