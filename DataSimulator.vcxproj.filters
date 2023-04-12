@@ -13,42 +13,54 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="DataStructs">
+      <UniqueIdentifier>{0cf4c81f-6688-4206-bd0d-1df5dd179210}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Schedueler">
+      <UniqueIdentifier>{68fd8c87-6798-4317-a520-04224b8eb073}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LinkedList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Queue.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="PrioQueue.h">
+      <Filter>DataStructs</Filter>
     </ClInclude>
     <ClInclude Include="Stack.h">
-      <Filter>Header Files</Filter>
+      <Filter>DataStructs</Filter>
     </ClInclude>
-    <ClInclude Include="PrioQueue.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Queue.h">
+      <Filter>DataStructs</Filter>
     </ClInclude>
     <ClInclude Include="PrioQueueNode.h">
-      <Filter>Header Files</Filter>
+      <Filter>DataStructs</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <Filter>DataStructs</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>DataStructs</Filter>
+    </ClInclude>
+    <ClInclude Include="Schedueler.h">
+      <Filter>Schedueler</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LinkedList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source.cpp">
+    <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Queue.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>DataStructs</Filter>
     </ClCompile>
     <ClCompile Include="Stack.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>DataStructs</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedList.cpp">
+      <Filter>DataStructs</Filter>
+    </ClCompile>
+    <ClCompile Include="Schedueler.cpp">
+      <Filter>Schedueler</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Schedueler</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
