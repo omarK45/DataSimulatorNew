@@ -7,7 +7,7 @@
 template <class T>
 class Processor
 {
-private:
+protected:
 	LinkedList<Process> ReadyList;
 	Queue<Process> RunList;
 	int timestep;
@@ -15,11 +15,10 @@ private:
 	bool status;
 public:
 	Processor();
-	void virtual AddProcess(Process* P)=0;
+	void virtual AddProcess(Process* P) = 0;
 	void virtual ScheduleAlgo() = 0;
 	void SetStatus();
 	bool GetStatus();
 	int virtual PLoad();
 	int virtual PUtil();
 };
-

@@ -127,18 +127,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="FCFS.h" />
     <ClInclude Include="PrioQueue.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="PrioQueueNode.h" />
     <ClInclude Include="Process.h" />
+    <ClInclude Include="Processor.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Schedueler.h" />
     <ClInclude Include="Stack.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FCFS.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="Process.cpp" />
+    <ClCompile Include="Processor.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Schedueler.cpp" />
     <ClCompile Include="Main.cpp" />
