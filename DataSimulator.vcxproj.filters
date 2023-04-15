@@ -51,6 +51,9 @@
     <ClInclude Include="Process.h">
       <Filter>process</Filter>
     </ClInclude>
+    <ClInclude Include="Processor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -70,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="Process.cpp">
       <Filter>process</Filter>
+    </ClCompile>
+    <ClCompile Include="Processor.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

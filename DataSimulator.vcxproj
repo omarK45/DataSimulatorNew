@@ -132,6 +132,7 @@
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="PrioQueueNode.h" />
     <ClInclude Include="Process.h" />
+    <ClInclude Include="Processor.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Schedueler.h" />
     <ClInclude Include="Stack.h" />
@@ -139,6 +140,7 @@
   <ItemGroup>
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="Process.cpp" />
+    <ClCompile Include="Processor.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Schedueler.cpp" />
     <ClCompile Include="Main.cpp" />

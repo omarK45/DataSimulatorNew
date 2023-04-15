@@ -24,6 +24,17 @@ void LinkedList<T>::insertNode(T data)
 }
 
 template<typename T>
+bool LinkedList<T>::isempty() {
+    if (head == nullptr) {
+        return false
+    else
+        return true;
+    }
+        
+
+}
+
+template<typename T>
 void LinkedList<T>::deleteNode(T value) {
     Node<T>* currNode = head;
     Node<T>* prevNode = nullptr;

@@ -17,6 +17,7 @@ public:
     void deleteNode(T value);
     void printlist();
     bool deleteLastNode();
+    bool isempty();
     int getlistcount();
 };
 

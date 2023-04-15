@@ -57,4 +57,3 @@ void Process::setio_requesttime(int timestep) {
 void Process::setio_duration(float duration) {
     io_duration = duration;
 }
-
