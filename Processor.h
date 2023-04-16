@@ -8,8 +8,6 @@ template <class T>
 class Processor
 {
 protected:
-	LinkedList<Process> ReadyList;
-	Queue<Process> RunList;
 	int timestep;
 	int busytime;
 	bool status;

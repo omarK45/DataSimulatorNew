@@ -1,18 +1,17 @@
+#ifndef LINKEDLIST_H
+#define LINKEDLIST_H
+
 #include "Node.h"
 
 template<typename T>
-class LinkedList
-{
+class LinkedList {
 private:
     Node<T>* head;
+    T data;
     int count;
+
 public:
-
-    LinkedList()  {
-        head = nullptr;
-        count = 0;
-    }
-
+    T getdata();
     void insertNode(T data);
     void deleteNode(T value);
     void printlist();
@@ -20,5 +19,9 @@ public:
     bool isempty();
     int getlistcount();
 };
+
+
+#endif 
+
 
 

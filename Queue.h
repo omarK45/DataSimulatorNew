@@ -1,3 +1,6 @@
+#ifndef QUEUE_H
+#define QUEUE_H
+
 #include "Node.h"
 
 template<typename T>
@@ -17,3 +20,5 @@ public:
 };
 
 
+
+#endif 

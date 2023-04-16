@@ -1,5 +1,10 @@
-
+#include "Node.h"
 #include "LinkedList.h"
+template<typename T>
+T LinkedList<T>::getdata()
+{
+    return head->data;
+}
 template<typename T>
 void LinkedList<T>::insertNode(T data)
 {
@@ -26,12 +31,9 @@ void LinkedList<T>::insertNode(T data)
 template<typename T>
 bool LinkedList<T>::isempty() {
     if (head == nullptr) {
-        return false
-    else
         return true;
     }
-        
-
+    return false;
 }
 
 template<typename T>
@@ -66,7 +68,6 @@ void LinkedList<T>::printlist()
     }
 
     while (temp != NULL) {
-        cout << temp->data << " ";
         temp = temp->next;
     }
 }

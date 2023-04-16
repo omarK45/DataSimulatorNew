@@ -6,7 +6,7 @@ using namespace std;
 #include "stack.cpp"
 
 
-int stack() {
+int main() {
     Stack<int> s1;
     int item;
     for (int i = 0; i < 3; i++) {

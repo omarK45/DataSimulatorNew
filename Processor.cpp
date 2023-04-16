@@ -3,7 +3,7 @@
 template <typename T>
 Processor<T>::Processor()
 {
-	ReadyList.isempty() = true;
+	
 }
 
 
@@ -11,10 +11,7 @@ Processor<T>::Processor()
 template <typename T>
 void Processor<T>::SetStatus()
 {
-	if (ReadyList.isempty())
-		status = true;
-	else
-		status = false;
+	
 }
 
 

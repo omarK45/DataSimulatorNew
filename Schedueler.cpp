@@ -1,23 +1,27 @@
 #include "Schedueler.h"
+#include "LinkedList.cpp"
+
 #include <iostream>
 #include <fstream>
 using namespace std;
+
 Schedueler::Schedueler() {
 
-
+    timestep = 0;
 
 
 }
-int load() {
+void Schedueler::load() {
     ifstream fin("C:\\Users\\Lenovo\\Desktop\\Datastackadd\\test2.txt"); // open input file
     if (fin.fail()) {
         cout << "Error opening input file\n";
-        return 1;
+
     }
 
     // read number of processors for each scheduling algorithm
     int NF, NS, NR;
     fin >> NF >> NS >> NR;
+    
 
     // read time slice for RR scheduling
     int time_slice;
@@ -31,12 +35,13 @@ int load() {
     // read number of processes
     int M;
     fin >> M;
+    
     cout << "no of nf ns nr " << NF << NS << NR << endl;
     cout << "time slice rr " << time_slice << endl;
     cout << "RTF Max STL Fork" << " " << RTF << " " << Max << " " << STL << " " << fork_prob << endl;
     cout << "no of nf ns nr " << NF << NS << NR << endl;
     cout << "no of processes= " << M << endl;
-
+    newlist.printlist();
     int* arrival_times = new int[M];
     int* process_id = new int[M];
     int* cpu_time = new int[M];
@@ -76,6 +81,20 @@ int load() {
     }
 
     fin.close();
+    for (int i = 0; i < M; i++)
+    {
+
+        Process p;
+        p.setarrival_time(arrival_times[i]);
+        p.setprocess_id(process_id[i]);
+        p.setcpu_time(cpu_time[i]);
+        p.setio_requesttime(io_times[i][0]);
+        p.setio_duration(io_times[i][1]);
+        newlist.insertNode(p);
+        
+    }
+
+
 
     delete[] arrival_times;
     delete[] process_id;
@@ -86,6 +105,17 @@ int load() {
     delete[] io_times;
     delete[] killtimes;
     delete[] IdKs;
-    return 0;
+
+}
+void Schedueler::simulate() {
+    while (!newlist.isempty()) {
+        if (newlist.getdata().getarrival_time() == timestep) {
+            newlist.getdata();
+            timestep++;
+        }
+
+
+    }
+
 }
 
