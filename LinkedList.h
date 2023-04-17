@@ -1,5 +1,8 @@
+#ifndef LINKEDLIST_H
+#define LINKEDLIST_H
+
 #include "Node.h"
-#pragma once
+
 template<typename T>
 class LinkedList
 {
@@ -8,7 +11,7 @@ private:
     int count;
 public:
 
-    LinkedList()  {
+    LinkedList() {
         head = nullptr;
         count = 0;
     }
@@ -21,4 +24,4 @@ public:
     int getlistcount();
 };
 
-
+#endif 

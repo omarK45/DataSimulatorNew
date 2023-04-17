@@ -1,43 +1,32 @@
 #include "FCFS.h"
-template <typename T>
-FCFS<T>::FCFS() {
+FCFS::FCFS() {
 
 
 
 }
-template <typename T>
-void FCFS<T>::ScheduleAlgo()
+void FCFS::ScheduleAlgo()
 {
-	Processor p;
-	if (p.GetStatus() == true)
-	{
-		AddProcessRd();
-		ReadyList.deleteNode(p);
-		p.SetStatus(false);
-	}
+	
 }
 
 
-template <typename T>
-void FCFS<T>::AddProcessRd(Process* p)
+void FCFS::AddProcessRd(Process p)
 {
 	ReadyList.insertNode(p);
 }
 
-template<class T>
-void FCFS<T>::AddProcessRn(Process* p)
+void FCFS::AddProcessRn(Process p)
 {
 	RunList.enqueue(p);
 }
 
-template <class T>
-LinkedList<T>& FCFS<T>::getReadyList()
+
+LinkedList<Process>& FCFS::getReadyList()
 {
 	return ReadyList;
 }
 
-template<class T>
-Queue<T>& FCFS<T>::getRun()
+Queue<Process>& FCFS::getRun()
 {
 	return RunList;
 }

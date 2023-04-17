@@ -13,9 +13,9 @@ protected:
 	Queue<Process> TRM;
 	int timestep;
 	int NF, NS, NR;
-	FCFS<Process>* arrF;
-	SJF<Process>* arrS;
-	RoundRobin<Process>* arrR;
+	FCFS * arrF;
+	SJF * arrS;
+	RoundRobin * arrR;
 
 public:
 	Schedueler();

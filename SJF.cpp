@@ -1,37 +1,29 @@
 #include "SJF.h"
 
-template <typename T>
-void SJF<T>::ScheduleAlgo()
+
+void SJF::ScheduleAlgo()
 {
-	Processor p;
-	if (p.GetStatus() == true)
-	{
-		AddProcessRd();
-		p.SetStatus(false);
-	}
+	
 }
 
 
-template <typename T>
-void SJF<T>::AddProcessRd(Process* p)
+
+void SJF::AddProcessRd(Process p)
 {
-	ReadyList.insert(p, priority);
+	ReadyList.insert(p,p.getcpu_time());
 }
 
-template<class T>
-void SJF<T>::AddProcessRn(Process* p)
+void SJF::AddProcessRn(Process p)
 {
 	RunList.enqueue(p);
 }
 
-template <class T>
-Queue<T>& SJF<T>::getReadyList()
+PriorityQueue<Process>& SJF::getReadyList()
 {
 	return ReadyList;
 }
 
-template<class T>
-Queue<T>& SJF<T>::getRun()
+Queue<Process>& SJF::getRun()
 {
 	return RunList;
 }

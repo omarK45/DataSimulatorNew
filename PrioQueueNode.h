@@ -7,7 +7,7 @@ public:
 	int priority = 0;
 	T data;
 	PrioQueueNode<T>* next = NULL;
-	PrioQueueNode(T d, int p) {
+	PrioQueueNode(T d, float p) {
 		data = d;
 		priority = p;
 	}

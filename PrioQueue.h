@@ -11,7 +11,7 @@ class PriorityQueue {
 	PrioQueueNode<T>* front = NULL;
 public:
 	int count = 0;
-	void insert(T val, int priority)
+	void insert(T val, float priority)
 	{
 		PrioQueueNode<T>* temp, * q;
 		temp = new PrioQueueNode<T>(val, priority);
@@ -42,7 +42,6 @@ public:
 			count--;
 			return data;
 		}
-		return NULL;
 	}
 	int size()
 	{

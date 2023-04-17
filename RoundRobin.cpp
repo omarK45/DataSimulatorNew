@@ -1,29 +1,25 @@
 #include "RoundRobin.h"
-template <typename T>
-void RoundRobin<T>::settimeslice(int t) {
+void RoundRobin::settimeslice(int t) {
     timeslice = t;
 }
-template <typename T>
-void RoundRobin<T>::ScheduleAlgo() {
+
+void RoundRobin::ScheduleAlgo() {
 
 }
-template <typename T>
-void RoundRobin<T>::AddProcessRd(Process* p) {
+void RoundRobin::AddProcessRd(Process p) {
     ReadyList.enqueue(p);
 }
-template<typename T>
-void RoundRobin<T>::AddProcessRn(Process* p)
+
+void RoundRobin::AddProcessRn(Process p)
 {
     RunList.enqueue(p);
 }
-template <class T>
-Queue<T>& RoundRobin<T>::getReadyList()
+Queue<Process>& RoundRobin::getReadyList()
 {
     return ReadyList;
 }
 
-template<typename T>
-Queue<T>& RoundRobin<T>::getRun()
+Queue<Process>& RoundRobin::getRun()
 {
     return RunList;
 }

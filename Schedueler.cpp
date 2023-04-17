@@ -1,5 +1,4 @@
 #include "Schedueler.h"
-#include "LinkedList.cpp""
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -24,24 +23,24 @@ void Schedueler::load() {
 
 
     //creating the processors
-    arrF = new FCFS<Process>[NF];
+    arrF = new FCFS [NF];
     for (int i = 0; i < NF; i++) {
 
-        FCFS<Process> F;
+        FCFS F;
         arrF[i] = F;
 
     }
 
-    arrS = new SJF<Process>[NS];
+    arrS = new SJF[NS];
     for (int i = 0; i < NS; i++) {
 
-        SJF<Process> S;
+        SJF S;
         arrS[i] = S;
 
     }
     for (int i = 0; i < NR; i++) {
 
-        RoundRobin<Process> R;
+        RoundRobin R;
         arrR[i] = R;
 
     }
@@ -139,16 +138,16 @@ void Schedueler::simulate() {
         if (newlist.peek().getarrival_time() == timestep) {
             for (int i = 0; i < NF; i++) {
                 Process data = newlist.dequeue();
-                arrF[i].AddProcessRd(&data);   
+                arrF[i].AddProcessRd(data);   
               
             }
             for (int i = 0; i < NS; i++) {
                 Process data = newlist.dequeue();;
-                arrS[i].AddProcessRd(&data);
+                arrS[i].AddProcessRd(data);
             }
             for (int i=0; i < NR; i++) {
                 Process data = newlist.dequeue();
-                arrR[i].AddProcessRd(&data);
+                arrR[i].AddProcessRd(data);
             }
         }
     }
@@ -158,21 +157,21 @@ void Schedueler::simulate() {
         if (arrF[i].GetStatus()) {
             Process data = arrF[i].getReadyList().getdata();
             arrF[i].getReadyList().deleteNode(data);
-            arrF[i].AddProcessRn(&data);
+            arrF[i].AddProcessRn(data);
         }
     }
     for (int i = 0; i < NS; i++)
     {
         if (arrS[i].GetStatus()) {
-            Process data = arrS[i].getReadyList().dequeue();
-            arrS[i].AddProcessRn(&data);
+            Process data = arrS[i].getReadyList().remove();
+            arrS[i].AddProcessRn(data);
         }
     }
     for (int i = 0; i < NR; i++)
     {
         if (arrR[i].GetStatus()) {
             Process data = arrR[i].getReadyList().dequeue();
-            arrR[i].AddProcessRn(&data);
+            arrR[i].AddProcessRn(data);
         }
     }
 
@@ -180,7 +179,7 @@ void Schedueler::simulate() {
    //RANDOM FUNCTION MOVES FROM RUN LIST TO DIFF LISTS BASED ON NUMBER GENERATED
     for (int i = 0; i < NF; i++) {
         for (int i = 0; arrF[i].getRun().getcount(); i++) {
-            int numR = rand() % 100+1;
+            int numR = rand() % 100 + 1;
             if (1 <= numR <= 15) {
                 Blk.enqueue(arrF[i].getRun().dequeue());
 
@@ -204,7 +203,7 @@ void Schedueler::simulate() {
 
             }
             if (20 <= numR <= 30) {
-                arrS[i].getReadyList().enqueue(arrS[i].getRun().dequeue());
+                arrS[i].getReadyList().insert(arrS[i].getRun().dequeue(), arrS[i].getRun().dequeue().getcpu_time());
 
             }
             if (50 <= numR <= 60) {

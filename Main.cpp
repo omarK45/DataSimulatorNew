@@ -5,7 +5,7 @@ using namespace std;
 #include "Queue.cpp"
 #include "stack.cpp"
 #include"Schedueler.h"
-
+#include"Schedueler.cpp"
 
 int main() {
 	Schedueler s;

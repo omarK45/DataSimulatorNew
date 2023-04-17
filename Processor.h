@@ -13,7 +13,7 @@ protected:
 	bool status;
 public:
 	Processor();
-	void virtual AddProcessRd(Process* P) = 0;
+	void virtual AddProcessRd(Process P) = 0;
 	void virtual ScheduleAlgo() = 0;
 	void SetStatus(bool s);
 	bool GetStatus();
