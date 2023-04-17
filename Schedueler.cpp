@@ -1,4 +1,5 @@
 #include "Schedueler.h"
+#include "LinkedList.cpp""
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -6,13 +7,12 @@ Schedueler::Schedueler() {
 
 
 
-
 }
-int load() {
+void Schedueler::load() {
     ifstream fin("C:\\Users\\Lenovo\\Desktop\\Datastackadd\\test2.txt"); // open input file
     if (fin.fail()) {
         cout << "Error opening input file\n";
-        return 1;
+       
     }
 
     // read number of processors for each scheduling algorithm
@@ -77,6 +77,19 @@ int load() {
 
     fin.close();
 
+    for (int i = 0; i < M; i++)
+    {
+
+        Process p;
+        p.setarrival_time(arrival_times[i]);
+        p.setprocess_id(process_id[i]);
+        p.setcpu_time(cpu_time[i]);
+        p.setio_requesttime(io_times[i][0]);
+        p.setio_duration(io_times[i][1]);
+        newlist.insertNode(p);
+
+    }
+
     delete[] arrival_times;
     delete[] process_id;
     delete[] cpu_time;
@@ -86,6 +99,16 @@ int load() {
     delete[] io_times;
     delete[] killtimes;
     delete[] IdKs;
-    return 0;
+   
+}
+
+void Schedueler::simulate() {
+    while (!newlist.isempty()) {
+        if (newlist.getdata().getarrival_time() == timestep) {
+            newlist.getdata();
+            timestep++;
+        }
+    }
+
 }
 

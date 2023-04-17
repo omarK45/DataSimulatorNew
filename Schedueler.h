@@ -1,9 +1,20 @@
 #pragma once
+#include "LinkedList.h"
+#include "Process.h"
+#include "FCFS.h"
+#include "SJF.h"
+#include "Processor.h"
+
 class Schedueler
 {
-private:
+protected:
+	LinkedList<Process> newlist;
+	int timestep;
+	FCFS<Process>* arrF;
+	SJF<Process>* arrS;
+
 public:
 	Schedueler();
-	int load();
+	void load();
+	void simulate();
 };
-

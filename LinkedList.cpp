@@ -1,6 +1,13 @@
 
 #include "LinkedList.h"
 template<typename T>
+
+T LinkedList<T>::getdata() {
+
+    return head->data;
+
+}
+template<typename T>
 void LinkedList<T>::insertNode(T data)
 {
     Node<T>* newNode = new Node<T>(data);
@@ -25,13 +32,11 @@ void LinkedList<T>::insertNode(T data)
 
 template<typename T>
 bool LinkedList<T>::isempty() {
-    if (head == nullptr) {
-        return false
+    if (head == nullptr) 
+        return false;
     else
         return true;
-    }
-        
-
+    
 }
 
 template<typename T>

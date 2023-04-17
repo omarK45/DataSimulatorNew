@@ -4,9 +4,10 @@ using namespace std;
 #include "LinkedList.cpp"
 #include "Queue.cpp"
 #include "stack.cpp"
+#include"Schedueler.h"
 
 
-int stack() {
+int main() {
     Stack<int> s1;
     int item;
     for (int i = 0; i < 3; i++) {
@@ -21,5 +22,4 @@ int stack() {
     cout << s1.pop() << " " << "was deleted from stack\n";
     s1.display();
     cout << s1.count();
-    return 0;
 }

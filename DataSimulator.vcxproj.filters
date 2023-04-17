@@ -52,7 +52,13 @@
       <Filter>process</Filter>
     </ClInclude>
     <ClInclude Include="Processor.h">
-      <Filter>Header Files</Filter>
+      <Filter>Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="FCFS.h">
+      <Filter>Processor</Filter>
+    </ClInclude>
+    <ClInclude Include="SJF.h">
+      <Filter>Processor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -75,7 +81,13 @@
       <Filter>process</Filter>
     </ClCompile>
     <ClCompile Include="Processor.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Processor</Filter>
+    </ClCompile>
+    <ClCompile Include="FCFS.cpp">
+      <Filter>Processor</Filter>
+    </ClCompile>
+    <ClCompile Include="SJF.cpp">
+      <Filter>Processor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

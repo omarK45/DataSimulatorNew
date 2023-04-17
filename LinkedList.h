@@ -1,5 +1,5 @@
 #include "Node.h"
-
+#pragma once
 template<typename T>
 class LinkedList
 {
@@ -12,7 +12,7 @@ public:
         head = nullptr;
         count = 0;
     }
-
+    T getdata();
     void insertNode(T data);
     void deleteNode(T value);
     void printlist();
