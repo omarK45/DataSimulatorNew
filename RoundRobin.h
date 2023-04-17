@@ -9,7 +9,6 @@ private:
     Queue<Process> RunList;
     int timeslice;
     int timesum;
-    Queue<Process> TRM;
 public:
     void settimeslice(int t);
     void ScheduleAlgo();

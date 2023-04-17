@@ -6,7 +6,7 @@ using namespace std;
 Schedueler::Schedueler() {
 
 
-
+    click = true;
 }
 
 
@@ -131,107 +131,108 @@ void Schedueler::load() {
 
 void Schedueler::simulate() {
     load();
+    while (click = true) {
+        //Adding to RDY LISTS FROM NEWLIST
 
-    //Adding to RDY LISTS FROM NEWLIST
+        while (!newlist.isEmpty()) {
+            if (newlist.peek().getarrival_time() == timestep) {
+                for (int i = 0; i < NF; i++) {
+                    Process data = newlist.dequeue();
+                    arrF[i].AddProcessRd(data);
 
-    while (!newlist.isEmpty()) {
-        if (newlist.peek().getarrival_time() == timestep) {
-            for (int i = 0; i < NF; i++) {
-                Process data = newlist.dequeue();
-                arrF[i].AddProcessRd(data);   
-              
-            }
-            for (int i = 0; i < NS; i++) {
-                Process data = newlist.dequeue();;
-                arrS[i].AddProcessRd(data);
-            }
-            for (int i=0; i < NR; i++) {
-                Process data = newlist.dequeue();
-                arrR[i].AddProcessRd(data);
-            }
-        }
-    }
-    //MOVES FROM RDY LISTS TO RUN LISTS BASED ON STATUS
-    for  (int i = 0; i < NF; i++)
-    {
-        if (arrF[i].GetStatus()) {
-            Process data = arrF[i].getReadyList().getdata();
-            arrF[i].getReadyList().deleteNode(data);
-            arrF[i].AddProcessRn(data);
-        }
-    }
-    for (int i = 0; i < NS; i++)
-    {
-        if (arrS[i].GetStatus()) {
-            Process data = arrS[i].getReadyList().remove();
-            arrS[i].AddProcessRn(data);
-        }
-    }
-    for (int i = 0; i < NR; i++)
-    {
-        if (arrR[i].GetStatus()) {
-            Process data = arrR[i].getReadyList().dequeue();
-            arrR[i].AddProcessRn(data);
-        }
-    }
-
-    srand(timestep);
-   //RANDOM FUNCTION MOVES FROM RUN LIST TO DIFF LISTS BASED ON NUMBER GENERATED
-    for (int i = 0; i < NF; i++) {
-        for (int i = 0; arrF[i].getRun().getcount(); i++) {
-            int numR = rand() % 100 + 1;
-            if (1 <= numR <= 15) {
-                Blk.enqueue(arrF[i].getRun().dequeue());
-
-            }
-            if (20 <= numR <= 30) {
-                arrF[i].getReadyList().insertNode(arrF[i].getRun().dequeue());
-
-            }
-            if (50 <= numR <= 60) {
-
-                TRM.enqueue(arrF[i].getRun().dequeue());
+                }
+                for (int i = 0; i < NS; i++) {
+                    Process data = newlist.dequeue();;
+                    arrS[i].AddProcessRd(data);
+                }
+                for (int i = 0; i < NR; i++) {
+                    Process data = newlist.dequeue();
+                    arrR[i].AddProcessRd(data);
+                }
             }
         }
-    }
-
-    for (int i = 0; i < NS; i++) {
-        for (int i = 0; arrS[i].getRun().getcount(); i++) {
-            int numR = rand() % 100+1;
-            if (1 <= numR <= 15) {
-                Blk.enqueue(arrS[i].getRun().dequeue());
-
-            }
-            if (20 <= numR <= 30) {
-                arrS[i].getReadyList().insert(arrS[i].getRun().dequeue(), arrS[i].getRun().dequeue().getcpu_time());
-
-            }
-            if (50 <= numR <= 60) {
-
-                TRM.enqueue(arrS[i].getRun().dequeue());
+        //MOVES FROM RDY LISTS TO RUN LISTS BASED ON STATUS
+        for (int i = 0; i < NF; i++)
+        {
+            if (arrF[i].GetStatus()) {
+                Process data = arrF[i].getReadyList().getdata();
+                arrF[i].getReadyList().deleteNode(data);
+                arrF[i].AddProcessRn(data);
             }
         }
-    }
-    for (int i = 0; i < NR; i++) {
-        for (int i = 0; arrR[i].getRun().getcount(); i++) {
-            int numR = rand() % 100+1;
-            if (1 <= numR <= 15) {
-                Blk.enqueue(arrR[i].getRun().dequeue());
-
-            }
-            if (20 <= numR <= 30) {
-                arrR[i].getReadyList().enqueue(arrR[i].getRun().dequeue());
-
-            }
-            if (50 <= numR <= 60) {
-
-                TRM.enqueue(arrR[i].getRun().dequeue());
+        for (int i = 0; i < NS; i++)
+        {
+            if (arrS[i].GetStatus()) {
+                Process data = arrS[i].getReadyList().remove();
+                arrS[i].AddProcessRn(data);
             }
         }
+        for (int i = 0; i < NR; i++)
+        {
+            if (arrR[i].GetStatus()) {
+                Process data = arrR[i].getReadyList().dequeue();
+                arrR[i].AddProcessRn(data);
+            }
+        }
+
+        srand(timestep);
+        //RANDOM FUNCTION MOVES FROM RUN LIST TO DIFF LISTS BASED ON NUMBER GENERATED
+        for (int i = 0; i < NF; i++) {
+            for (int i = 0; arrF[i].getRun().getcount(); i++) {
+                int numR = rand() % 100 + 1;
+                if (1 <= numR <= 15) {
+                    Blk.enqueue(arrF[i].getRun().dequeue());
+
+                }
+                if (20 <= numR <= 30) {
+                    arrF[i].getReadyList().insertNode(arrF[i].getRun().dequeue());
+
+                }
+                if (50 <= numR <= 60) {
+
+                    TRM.enqueue(arrF[i].getRun().dequeue());
+                }
+            }
+        }
+
+        for (int i = 0; i < NS; i++) {
+            for (int i = 0; arrS[i].getRun().getcount(); i++) {
+                int numR = rand() % 100 + 1;
+                if (1 <= numR <= 15) {
+                    Blk.enqueue(arrS[i].getRun().dequeue());
+
+                }
+                if (20 <= numR <= 30) {
+                    arrS[i].getReadyList().insert(arrS[i].getRun().dequeue(), arrS[i].getRun().dequeue().getcpu_time());
+
+                }
+                if (50 <= numR <= 60) {
+
+                    TRM.enqueue(arrS[i].getRun().dequeue());
+                }
+            }
+        }
+        for (int i = 0; i < NR; i++) {
+            for (int i = 0; arrR[i].getRun().getcount(); i++) {
+                int numR = rand() % 100 + 1;
+                if (1 <= numR <= 15) {
+                    Blk.enqueue(arrR[i].getRun().dequeue());
+
+                }
+                if (20 <= numR <= 30) {
+                    arrR[i].getReadyList().enqueue(arrR[i].getRun().dequeue());
+
+                }
+                if (50 <= numR <= 60) {
+
+                    TRM.enqueue(arrR[i].getRun().dequeue());
+                }
+            }
+        }
+
+        timestep++;
+        click = false;
     }
-  
-
-
-    
 }
+
 
