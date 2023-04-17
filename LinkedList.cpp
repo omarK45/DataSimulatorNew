@@ -44,7 +44,7 @@ void LinkedList<T>::deleteNode(T value) {
     Node<T>* currNode = head;
     Node<T>* prevNode = nullptr;
 
-    while (currNode != nullptr && currNode->data != value) {
+    while (currNode != nullptr) {
         prevNode = currNode;
         currNode = currNode->next;
     }

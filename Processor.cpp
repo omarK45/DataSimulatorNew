@@ -8,9 +8,9 @@ Processor::Processor()
 
 
 
-void Processor::SetStatus()
+void Processor::SetStatus(bool s)
 {
-
+	status = s;  //TRUE=IDLE FALSE=BUSY
 }
 
 

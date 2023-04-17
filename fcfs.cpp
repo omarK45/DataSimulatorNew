@@ -11,17 +11,35 @@ void FCFS<T>::ScheduleAlgo()
 	Processor p;
 	if (p.GetStatus() == true)
 	{
-		AddProcess();
+		AddProcessRd();
 		ReadyList.deleteNode(p);
-		RunList = p;
 		p.SetStatus(false);
 	}
 }
 
 
 template <typename T>
-void FCFS<T>::AddProcess(Process* p)
+void FCFS<T>::AddProcessRd(Process* p)
 {
 	ReadyList.insertNode(p);
 }
+
+template<class T>
+void FCFS<T>::AddProcessRn(Process* p)
+{
+	RunList.enqueue(p);
+}
+
+template <class T>
+LinkedList<T>& FCFS<T>::getReadyList()
+{
+	return ReadyList;
+}
+
+template<class T>
+Queue<T>& FCFS<T>::getRun()
+{
+	return RunList;
+}
+
 

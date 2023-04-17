@@ -3,21 +3,48 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
+
 Schedueler::Schedueler() {
 
 
 
 }
+
+
 void Schedueler::load() {
     ifstream fin("C:\\Users\\Lenovo\\Desktop\\Datastackadd\\test2.txt"); // open input file
     if (fin.fail()) {
         cout << "Error opening input file\n";
-       
+
     }
 
     // read number of processors for each scheduling algorithm
     int NF, NS, NR;
     fin >> NF >> NS >> NR;
+
+
+    //creating the processors
+    arrF = new FCFS<Process>[NF];
+    for (int i = 0; i < NF; i++) {
+
+        FCFS<Process> F;
+        arrF[i] = F;
+
+    }
+
+    arrS = new SJF<Process>[NS];
+    for (int i = 0; i < NS; i++) {
+
+        SJF<Process> S;
+        arrS[i] = S;
+
+    }
+    for (int i = 0; i < NR; i++) {
+
+        RoundRobin<Process> R;
+        arrR[i] = R;
+
+    }
 
     // read time slice for RR scheduling
     int time_slice;
@@ -86,7 +113,7 @@ void Schedueler::load() {
         p.setcpu_time(cpu_time[i]);
         p.setio_requesttime(io_times[i][0]);
         p.setio_duration(io_times[i][1]);
-        newlist.insertNode(p);
+        newlist.enqueue(p);
 
     }
 
@@ -99,16 +126,113 @@ void Schedueler::load() {
     delete[] io_times;
     delete[] killtimes;
     delete[] IdKs;
-   
+
 }
 
+
 void Schedueler::simulate() {
-    while (!newlist.isempty()) {
-        if (newlist.getdata().getarrival_time() == timestep) {
-            newlist.getdata();
-            timestep++;
+    load();
+
+    //Adding to RDY LISTS FROM NEWLIST
+
+    while (!newlist.isEmpty()) {
+        if (newlist.peek().getarrival_time() == timestep) {
+            for (int i = 0; i < NF; i++) {
+                Process data = newlist.dequeue();
+                arrF[i].AddProcessRd(&data);   
+              
+            }
+            for (int i = 0; i < NS; i++) {
+                Process data = newlist.dequeue();;
+                arrS[i].AddProcessRd(&data);
+            }
+            for (int i=0; i < NR; i++) {
+                Process data = newlist.dequeue();
+                arrR[i].AddProcessRd(&data);
+            }
+        }
+    }
+    //MOVES FROM RDY LISTS TO RUN LISTS BASED ON STATUS
+    for  (int i = 0; i < NF; i++)
+    {
+        if (arrF[i].GetStatus()) {
+            Process data = arrF[i].getReadyList().getdata();
+            arrF[i].getReadyList().deleteNode(data);
+            arrF[i].AddProcessRn(&data);
+        }
+    }
+    for (int i = 0; i < NS; i++)
+    {
+        if (arrS[i].GetStatus()) {
+            Process data = arrS[i].getReadyList().dequeue();
+            arrS[i].AddProcessRn(&data);
+        }
+    }
+    for (int i = 0; i < NR; i++)
+    {
+        if (arrR[i].GetStatus()) {
+            Process data = arrR[i].getReadyList().dequeue();
+            arrR[i].AddProcessRn(&data);
         }
     }
 
+    srand(timestep);
+   //RANDOM FUNCTION MOVES FROM RUN LIST TO DIFF LISTS BASED ON NUMBER GENERATED
+    for (int i = 0; i < NF; i++) {
+        for (int i = 0; arrF[i].getRun().getcount(); i++) {
+            int numR = rand() % 100+1;
+            if (1 <= numR <= 15) {
+                Blk.enqueue(arrF[i].getRun().dequeue());
+
+            }
+            if (20 <= numR <= 30) {
+                arrF[i].getReadyList().insertNode(arrF[i].getRun().dequeue());
+
+            }
+            if (50 <= numR <= 60) {
+
+                TRM.enqueue(arrF[i].getRun().dequeue());
+            }
+        }
+    }
+
+    for (int i = 0; i < NS; i++) {
+        for (int i = 0; arrS[i].getRun().getcount(); i++) {
+            int numR = rand() % 100+1;
+            if (1 <= numR <= 15) {
+                Blk.enqueue(arrS[i].getRun().dequeue());
+
+            }
+            if (20 <= numR <= 30) {
+                arrS[i].getReadyList().enqueue(arrS[i].getRun().dequeue());
+
+            }
+            if (50 <= numR <= 60) {
+
+                TRM.enqueue(arrS[i].getRun().dequeue());
+            }
+        }
+    }
+    for (int i = 0; i < NR; i++) {
+        for (int i = 0; arrR[i].getRun().getcount(); i++) {
+            int numR = rand() % 100+1;
+            if (1 <= numR <= 15) {
+                Blk.enqueue(arrR[i].getRun().dequeue());
+
+            }
+            if (20 <= numR <= 30) {
+                arrR[i].getReadyList().enqueue(arrR[i].getRun().dequeue());
+
+            }
+            if (50 <= numR <= 60) {
+
+                TRM.enqueue(arrR[i].getRun().dequeue());
+            }
+        }
+    }
+  
+
+
+    
 }
 

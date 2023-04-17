@@ -8,18 +8,6 @@ using namespace std;
 
 
 int main() {
-    Stack<int> s1;
-    int item;
-    for (int i = 0; i < 3; i++) {
-        cout << "enter item to push\n";
-        cin >> item;
-        s1.push(item);
-        s1.display();
-
-    }
-    cout << s1.pop() << " " << "was deleted from stack\n";
-    s1.display();
-    cout << s1.pop() << " " << "was deleted from stack\n";
-    s1.display();
-    cout << s1.count();
+	Schedueler s;
+	s.simulate();
 }

@@ -19,10 +19,12 @@ void Queue<T>::enqueue(T value) {
     if (isEmpty()) {
         head = newNode;
         tail = newNode;
+        count++;
     }
     else {
         tail->next = newNode;
         tail = newNode;
+        count++;
     }
 }
 
@@ -35,6 +37,7 @@ T Queue<T>::dequeue() {
     T value = head->data;
     head = head->next;
     delete temp;
+    count--;
     return value;
 }
 
@@ -61,6 +64,12 @@ void Queue<T>::printQueue() {
         }
   
     }
+}
+
+template<typename T>
+int Queue<T>::getcount()
+{
+    return count;
 }
 
 template<typename T>

@@ -5,6 +5,7 @@ class Queue {
 private:
     Node<T>* head;
     Node<T>* tail;
+    int count;
 
 public:
     Queue();
@@ -13,6 +14,7 @@ public:
     T dequeue();
     T peek();
     void printQueue();
+    int getcount();
     ~Queue();
 };
 
