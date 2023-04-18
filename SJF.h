@@ -2,14 +2,18 @@
 #include "Processor.h"
 #include "PrioQueue.h"
 
-template <class T>
-class SJF :public Processor<T>
+
+class SJF :public Processor
 {
 private:
-	PriorityQueue<T> ReadyList;
+	PriorityQueue<Process> ReadyList;
+	Process* RunList;
 	int priority;
 public:
-	void virtual ScheduleAlgo();
-	void AddProcess(Process* p);
+	SJF();
+	virtual Process* ScheduleAlgo();
+	void AddProcessRd(Process* p);
+	void AddProcessRn(Process* p);
+	Process* getRun();
+	void printRDY();
 };
-

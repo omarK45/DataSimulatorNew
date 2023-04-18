@@ -1,39 +1,46 @@
 #include "Processor.h"
 
-template <typename T>
-Processor<T>::Processor()
+
+Processor::Processor()
 {
-	ReadyList.isempty() = true;
+	status = true;
+	Rd = false;
+}
+
+bool Processor::Empty() {
+	return Rd;
 }
 
 
-//processor state
-template <typename T>
-void Processor<T>::SetStatus()
+
+void Processor::SetStatus(bool s)
 {
-	if (ReadyList.isempty())
-		status = true;
-	else
-		status = false;
+	status = s;  //TRUE=IDLE FALSE=BUSY
 }
 
 
-template <typename T>
-bool Processor<T>::GetStatus()
+bool Processor::GetStatus()
 {
 	return status;
 }
 
 
-template <typename T>
-int Processor<T>::PLoad()
+
+int Processor::PLoad()
 {
 	return busytime;
 }
 
 
-template <typename T>
-int Processor<T>::PUtil()
+
+int Processor::PUtil()
 {
 	return busytime;
+}
+
+string Processor::return_Type() {
+    return Type;
+}
+Process* Processor::returnrun() {
+
 }
