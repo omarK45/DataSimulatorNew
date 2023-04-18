@@ -37,6 +37,7 @@ void SJF::AddProcessRd(Process* p)
 void SJF::AddProcessRn(Process* p)
 {
 	RunList = p;
+    Rd = false;
 }
 
 

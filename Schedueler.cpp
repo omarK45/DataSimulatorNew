@@ -7,6 +7,11 @@ using namespace std;
 Schedueler::Schedueler()
 {
 	timestep = 3;
+	if (M >= NF + NS + NR) {
+		n = NF + NS + NR;
+	}
+	else
+		n = M;
 }
 
 
@@ -135,13 +140,21 @@ void Schedueler::simulate()
 			Process* p = newlist.dequeue();
 			arrP[i]->AddProcessRd(p);
 		}
-
-		////MOVES FROM RDY LISTS TO RUN LISTS BASED ON STATUS
-		if (newlist.isEmpty()) {
-			cout << "NEWLIST IS EMPTY";
-		}
-
+	if (newlist.isEmpty()) {
+		cout << "NEWLIST IS EMPTY"<<endl;
 	}
+	if (!arrP[0]->Empty()) {
+		cout << "ready is not empty before"<<endl;
+	}
+	////MOVES FROM RDY LISTS TO RUN LISTS BASED ON STATUS
+	for (int i = 0; i < n; i++) {
+		arrP[i]->ScheduleAlgo();
+	}
+	if (!arrP[0]->Empty()) {
+		cout << "ready is empty after";
+	}
+
+}
 
 
 

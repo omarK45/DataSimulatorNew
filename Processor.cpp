@@ -4,6 +4,11 @@
 Processor::Processor()
 {
 	status = true;
+	Rd = false;
+}
+
+bool Processor::Empty() {
+	return Rd;
 }
 
 

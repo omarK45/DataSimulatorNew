@@ -28,6 +28,7 @@ Process* FCFS::ScheduleAlgo()
 void FCFS::AddProcessRd(Process* p)
 {
 	ReadyList.InsertEnd(p);
+    Rd = false;
 }
 
 void FCFS::AddProcessRn(Process* p)

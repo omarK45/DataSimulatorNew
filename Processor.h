@@ -11,12 +11,14 @@ protected:
 	int timestep;
 	int busytime;
 	bool status;
+	bool Rd;
 public:
 	Processor();
 	void virtual AddProcessRd(Process* P) = 0;
 	virtual Process* ScheduleAlgo() = 0;
 	void SetStatus(bool s);
 	bool GetStatus();
+	bool Empty();
 	int virtual PLoad();
 	int virtual PUtil();
 };

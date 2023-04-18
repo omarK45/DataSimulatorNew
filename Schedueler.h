@@ -19,6 +19,7 @@ private:
     int timestep ;
     int NF, NS, NR;
     int M;
+    int n;
     FCFS* arrF;
     SJF* arrS;
     RoundRobin* arrR;

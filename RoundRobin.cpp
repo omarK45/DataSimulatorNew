@@ -29,6 +29,7 @@ Process* RoundRobin::ScheduleAlgo
 void RoundRobin::AddProcessRd(Process* p)
 {
 	ReadyList.enqueue(p);
+	Rd = false;
 }
 
 void RoundRobin::AddProcessRn(Process* p)
