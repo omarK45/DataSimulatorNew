@@ -143,16 +143,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FCFS.cpp" />
-    <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="Process.cpp" />
     <ClCompile Include="Processor.cpp" />
-    <ClCompile Include="Queue.cpp" />
     <ClCompile Include="RoundRobin.cpp" />
     <ClCompile Include="Schedueler.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="SJF.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="Stack.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="test3.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

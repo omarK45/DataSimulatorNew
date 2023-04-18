@@ -1,22 +1,21 @@
 #pragma once
 #include "Processor.h"
 #include "Process.h"
-#include "LinkedList.cpp"
-#include "Queue.cpp"
+#include "LinkedList.h"
+#include "Queue.h"
 #include "PrioQueue.h"
 
 class FCFS : public Processor
 {
 private:
-	LinkedList<Process> ReadyList;
-	Queue<Process> RunList;
-
+	LinkedList<Process*> ReadyList;
+	Process* RunList;
+	bool status;
 public:
 	FCFS();
-	void ScheduleAlgo();
-	void AddProcessRd(Process p);
-	void AddProcessRn(Process p);
-	LinkedList<Process>& getReadyList();
-	Queue<Process>& getRun();
+    virtual Process* ScheduleAlgo();
+	void AddProcessRd(Process* p);
+	void AddProcessRn(Process* p);
+	Process* getRun();
 
 };

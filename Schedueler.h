@@ -8,21 +8,20 @@
 #include "SJF.h"
 #include "RoundRobin.h"
 #include "Processor.h"
-
+#include "UI.h"
 class Schedueler
 {
-protected:
-    Queue<Process> newlist;
-    Queue<Process> Blk;
-    Queue<Process> TRM;
+private:
+
+    Queue<Process*> newlist;
+    Queue<Process*> Blk;
+    Queue<Process*> TRM;
     int timestep ;
     int NF, NS, NR;
     int M;
-    FCFS* arrF;
-    SJF* arrS;
-    RoundRobin* arrR;
-    Processor** arrP;
-   char x;
+    FCFS** arrF;
+    SJF** arrS;
+    RoundRobin** arrR;
 
 public:
     Schedueler();

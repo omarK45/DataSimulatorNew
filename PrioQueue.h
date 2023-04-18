@@ -1,79 +1,100 @@
 #pragma once
-#include "Queue.h"
 #include "PrioQueueNode.h"
-#include <iostream>
+#include"iostream"
+
 using namespace std;
-#pragma once
-
-
-template<class T>
-class PriorityQueue {
-	PrioQueueNode<T>* front = NULL;
+template <typename T>
+class PriorityQueue
+{
+private:
+	PriorityNode<T>* frontPtr;
+	int count;
 public:
-	int count = 0;
-	void insert(T val, float priority)
-	{
-		PrioQueueNode<T>* temp, * q;
-		temp = new PrioQueueNode<T>(val, priority);
-		if (front == NULL || priority > front->priority)
-		{
-			temp->next = front;
-			front = temp;
-		}
-		else
-		{
-			q = front;
-			while (q->next != NULL && q->next->priority >= priority)
-				q = q->next;
-			temp->next = q->next;
-			q->next = temp;
-		}
-		count++;
-	}
-	T remove()
-	{
-		PrioQueueNode<T>* temp;
-		if (front != NULL)
-		{
-			temp = front;
-			T data = temp->data;
-			front = front->next;
-			delete temp;
-			count--;
-			return data;
-		}
-	}
-	int size()
+	int getCount() const
 	{
 		return count;
 	}
-	T ElementAt(int i) {
-		if (i > count) return NULL;
-		PrioQueueNode<T>* n = front;
-		int c = 0;
-		while (n != NULL && c < i) {
-			n = n->next;
-			c++;
-		}
-		return n->data;
-	}
-	void display()
+	PriorityQueue()
 	{
-		PrioQueueNode<T>* t;
-		t = front;
-		if (front == NULL)
-			printf("Queue is empty\n");
-		else
+		frontPtr = nullptr;
+		count = 0;
+	}
+	bool isEmpty() const
+	{
+		return !count;
+	}
+	bool enqueue(const T& newEntry, int pr)
+	{
+		PriorityNode<T>* newPtr = new PriorityNode<T>(newEntry, pr);
+
+		if (isEmpty() || pr < frontPtr->getPriority())
 		{
-			while (t != NULL)
-			{
-				cout << t->data << endl;
-				t = t->next;
-			}
+			newPtr->setNext(frontPtr);
+			frontPtr = newPtr;
+			count++;
+			return true;
 		}
+
+		PriorityNode<T>* ptr = frontPtr;
+		while (ptr->getNext() && ptr->getNext()->getPriority() <= pr)
+			ptr = ptr->getNext();
+
+		newPtr->setNext(ptr->getNext());
+		ptr->setNext(newPtr);
+		count++;
+		return true;
 	}
-	bool isEmpty()
+	bool dequeue(T& frntEntry)
 	{
-		return front == NULL;
+		if (isEmpty())
+			return false;
+
+		PriorityNode<T>* nodeToDeletePtr = frontPtr;
+		frntEntry = frontPtr->getItem();
+		frontPtr = frontPtr->getNext();
+		// Queue is not empty; remove front
+
+		// Free memory reserved by the dequeued node
+		delete nodeToDeletePtr;
+
+		count--;
+		return true;
+
 	}
+	bool peekFront(T& frntEntry) const
+	{
+		if (isEmpty())
+			return false;
+
+		frntEntry = frontPtr->getItem();
+		return true;
+
+	}
+
+	T* toArray()
+	{
+		if (!frontPtr)
+			return nullptr;
+
+		T* Arr = new T[count];
+		PriorityNode<T>* p = frontPtr;
+		for (int i = 0; i < count; i++)
+		{
+			Arr[i] = p->getItem();
+			p = p->getNext();
+		}
+		return Arr;
+	}
+	void printpq()
+	{
+		if (!frontPtr)
+			return;
+		PriorityNode<T>* p = frontPtr;
+		while (p) {
+			cout << *p->getItem();
+			p = p->getNext();
+		}
+
+	}
+
 };

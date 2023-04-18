@@ -5,16 +5,17 @@
 class RoundRobin :public Processor {
 private:
     Process* run;
-    Queue<Process> ReadyList;
-    Queue<Process> RunList;
+    Queue<Process*> ReadyList;
+    Process* RunList;
+    bool status;
     int timeslice;
     int timesum;
 public:
+    RoundRobin();
     void settimeslice(int t);
-    void ScheduleAlgo();
-    void AddProcessRd(Process p);
-    void AddProcessRn(Process p);
-    Queue<Process>& getReadyList();
-    Queue<Process>& getRun();
+    virtual Process* ScheduleAlgo();
+    void AddProcessRd(Process* p);
+    void AddProcessRn(Process* p);
+    Process* getRun();
 
 };

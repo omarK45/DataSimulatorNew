@@ -1,29 +1,51 @@
 #include "SJF.h"
 
-
-void SJF::ScheduleAlgo()
+SJF::SJF()
 {
-	
+    status = true;
+    RunList = NULL;
+}
+Process* SJF::ScheduleAlgo()
+{
+    if (ReadyList.isEmpty())
+    {
+        return NULL;
+    }
+    if (status==true)
+    {
+        Process* p = nullptr;
+        ReadyList.enqueue(*p,priority);
+        AddProcessRn(p);
+        status = false;
+        return NULL;
+    }
+    else
+    {
+        Process* tmp = RunList;
+        ReadyList.dequeue(*RunList);
+        return tmp;
+    }
 }
 
 
 
-void SJF::AddProcessRd(Process p)
+void SJF::AddProcessRd(Process* p)
 {
-	ReadyList.insert(p,p.getcpu_time());
+	ReadyList.enqueue(*p, p->getcpu_time());
 }
 
-void SJF::AddProcessRn(Process p)
+void SJF::AddProcessRn(Process* p)
 {
-	RunList.enqueue(p);
+	RunList = p;
 }
 
-PriorityQueue<Process>& SJF::getReadyList()
-{
-	return ReadyList;
-}
 
-Queue<Process>& SJF::getRun()
+Process* SJF::getRun()
 {
-	return RunList;
+    //Make temp = to running
+    Process* temp = RunList;
+    //Set Running to NULL
+    RunList = NULL;
+    //return the temp
+    return temp;
 }

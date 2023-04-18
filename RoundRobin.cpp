@@ -1,27 +1,52 @@
 #include "RoundRobin.h"
+
+RoundRobin::RoundRobin()
+{
+	status = true;
+}
 void RoundRobin::settimeslice(int t) {
-    timeslice = t;
+	timeslice = t;
 }
 
-void RoundRobin::ScheduleAlgo() {
-
-}
-void RoundRobin::AddProcessRd(Process p) {
-    ReadyList.enqueue(p);
-}
-
-void RoundRobin::AddProcessRn(Process p)
+Process* RoundRobin::ScheduleAlgo()
 {
-    RunList.enqueue(p);
+	if (ReadyList.isEmpty())
+	{
+		return NULL;
+	}
+	if (status == true)
+	{
+		Process* p;
+		ReadyList.dequeue(p);
+		RunList = p;
+		status = false;
+		return NULL;
+	}
+	else 
+	{
+		Process* tmp = RunList;
+		ReadyList.dequeue(RunList);
+		return tmp;
+	}
 }
-Queue<Process>& RoundRobin::getReadyList()
+void RoundRobin::AddProcessRd(Process* p)
 {
-    return ReadyList;
+	ReadyList.enqueue(p);
 }
 
-Queue<Process>& RoundRobin::getRun()
+void RoundRobin::AddProcessRn(Process* p)
 {
-    return RunList;
+	RunList = p;
+}
+
+Process* RoundRobin::getRun()
+{
+	//Make temp = to running
+	Process* temp = RunList;
+	//Set Running to NULL
+	RunList = NULL;
+	//return the temp
+	return temp;
 }
 
 
