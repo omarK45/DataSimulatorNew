@@ -12,6 +12,7 @@ protected:
 	int busytime;
 	bool status;
 	bool Rd;
+	Process* RunList;
 public:
 	Processor();
 	void virtual AddProcessRd(Process* P) = 0;
@@ -19,6 +20,7 @@ public:
 	void SetStatus(bool s);
 	bool GetStatus();
 	bool Empty();
+	virtual Process* getRun() = 0;
 	int virtual PLoad();
 	int virtual PUtil();
 };

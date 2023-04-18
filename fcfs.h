@@ -9,7 +9,6 @@ class FCFS : public Processor
 {
 private:
 	LinkedList<Process*> ReadyList;
-	Process* RunList;
 	bool status;
 public:
 	FCFS();

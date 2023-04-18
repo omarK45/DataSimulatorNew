@@ -15,12 +15,12 @@ Process* FCFS::ScheduleAlgo()
         Process* ss = ReadyList.DeleteFirst();
         RunList = ss;
         status = false;
-        return NULL;
+        return RunList;
     }
     else
     {
         Process* tmp = RunList;
-        ReadyList.DeleteNode(RunList);
+        RunList = NULL;
         return tmp;
     }
     

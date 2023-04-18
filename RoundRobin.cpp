@@ -19,11 +19,13 @@ Process* RoundRobin::ScheduleAlgo
 	{
 		RunList = ReadyList.dequeue();
 		status = false;
-		return NULL;
+		return RunList;
 	}
 	else 
 	{
-		return RunList;
+		Process* tmp = RunList;
+		RunList = ReadyList.dequeue();
+		return tmp;
 	}
 }
 void RoundRobin::AddProcessRd(Process* p)

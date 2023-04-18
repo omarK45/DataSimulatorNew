@@ -7,7 +7,6 @@ class SJF :public Processor
 {
 private:
 	PriorityQueue<Process> ReadyList;
-	Process* RunList;
 	int priority;
 public:
 	SJF();

@@ -44,23 +44,21 @@ public:
 		count++;
 		return true;
 	}
-	bool dequeue(T& frntEntry)
-	{
-		if (isEmpty())
-			return false;
+	Process* dequeue() {
+		if (isEmpty()) {
+			throw std::runtime_error("Queue is empty!");
+		}
 
 		PriorityNode<T>* nodeToDeletePtr = frontPtr;
-		frntEntry = frontPtr->getItem();
+		Process frntEntry = frontPtr->getItem();
 		frontPtr = frontPtr->getNext();
-		// Queue is not empty; remove front
 
-		// Free memory reserved by the dequeued node
 		delete nodeToDeletePtr;
-
 		count--;
-		return true;
 
+		return &frntEntry;
 	}
+
 	bool peekFront(T& frntEntry) const
 	{
 		if (isEmpty())

@@ -6,7 +6,6 @@ class RoundRobin :public Processor {
 private:
     Process* run;
     Queue<Process*> ReadyList;
-    Process* RunList;
     bool status;
     int timeslice;
     int timesum;

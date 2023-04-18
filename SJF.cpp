@@ -13,17 +13,13 @@ Process* SJF::ScheduleAlgo()
     }
     if (status==true)
     {
-        Process* p = nullptr;
-        ReadyList.enqueue(*p,priority);
-        AddProcessRn(p);
+        RunList = ReadyList.dequeue();
         status = false;
-        return NULL;
+        return RunList;
     }
     else
     {
-        Process* tmp = RunList;
-        ReadyList.dequeue(*RunList);
-        return tmp;
+        return RunList;
     }
 }
 
