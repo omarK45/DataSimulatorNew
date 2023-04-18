@@ -118,7 +118,7 @@ void Schedueler::load()
 }
 
 
-void Schedueler::simulate() 
+void Schedueler::simulate()
 {
 	load();
 	char x;
@@ -126,37 +126,23 @@ void Schedueler::simulate()
 
 		cout << "working and count is= " << newlist.getCount() << endl;
 	}
-
+	int c = newlist.getCount();
 	//MOVING FROM NEWLIST TO RDY LISTS
-	while (!newlist.isEmpty())
-	{
+	if (!newlist.isEmpty())
 
-		if (newlist.peek()->getarrival_time() == timestep) {
-			if (newlist.getCount() != 0) {
-				for (int i = 0; i < NF + NS + NR; i++) {
+		for (int i = 0; i < c; i++) {
 
-					Process* p = newlist.dequeue();
-					arrP[i]->AddProcessRd(p);
-
-
-				}
-			}
+			Process* p = newlist.dequeue();
+			arrP[i]->AddProcessRd(p);
 		}
-
-
-
 
 		////MOVES FROM RDY LISTS TO RUN LISTS BASED ON STATUS
-		for (int i = 0; i < NF + NR + NS; i++)
-		{
-			arrP[i]->ScheduleAlgo();
-		}
 		if (newlist.isEmpty()) {
 			cout << "NEWLIST IS EMPTY";
 		}
 
 	}
-}
+
 
 
 
