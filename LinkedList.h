@@ -17,7 +17,7 @@ public:
     }
     T getdata();
     void insertNode(T data);
-    void deleteNode(T value);
+    void deleteNode();
     void printlist();
     bool deleteLastNode();
     bool isempty();

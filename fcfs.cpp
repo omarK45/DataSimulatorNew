@@ -1,7 +1,7 @@
 #include "FCFS.h"
 FCFS::FCFS() {
 
-
+	
 
 }
 void FCFS::ScheduleAlgo()

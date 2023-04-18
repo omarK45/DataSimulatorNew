@@ -3,5 +3,8 @@
 using namespace std;
 
 int main() {
+	Schedueler s;
+	s.simulate();
+
 
 }

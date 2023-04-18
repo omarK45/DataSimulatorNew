@@ -4,7 +4,7 @@ using namespace std;
 class Process
 {
 private:
-    int process_id;;
+    int process_id;
     float arrival_time;
     float response_time;
     float cpu_time;

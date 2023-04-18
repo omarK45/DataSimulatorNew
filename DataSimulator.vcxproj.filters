@@ -25,6 +25,9 @@
     <Filter Include="Processor">
       <UniqueIdentifier>{0f379a6a-63d9-4fe3-acf4-b8e3df3b478c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{7f4858c4-deee-42a9-a005-44c5e8042637}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PrioQueue.h">
@@ -63,6 +66,9 @@
     <ClInclude Include="RoundRobin.h">
       <Filter>Processor</Filter>
     </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -94,6 +100,9 @@
     </ClCompile>
     <ClCompile Include="RoundRobin.cpp">
       <Filter>Processor</Filter>
+    </ClCompile>
+    <ClCompile Include="UI.cpp">
+      <Filter>UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -3,7 +3,7 @@
 
 Processor::Processor()
 {
-
+	status = true;
 }
 
 

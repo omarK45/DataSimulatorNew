@@ -139,6 +139,7 @@
     <ClInclude Include="Schedueler.h" />
     <ClInclude Include="SJF.h" />
     <ClInclude Include="Stack.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FCFS.cpp" />
@@ -150,6 +151,7 @@
     <ClCompile Include="Schedueler.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="SJF.cpp" />
+    <ClCompile Include="UI.cpp" />
     <ClCompile Include="Stack.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

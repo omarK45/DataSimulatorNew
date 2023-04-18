@@ -1,109 +1,87 @@
-
 #include "LinkedList.h"
-template<typename T>
 
+template<typename T>
 T LinkedList<T>::getdata() {
-
-    return head->data;
-
+    if (head != nullptr) {
+        return head->data;
+    }
+    else {
+        // You can choose to throw an exception here, or return a default value of T.
+        // Here, we choose to throw an exception.
+        throw std::out_of_range("List is empty");
+    }
 }
+
 template<typename T>
-void LinkedList<T>::insertNode(T data)
-{
+void LinkedList<T>::insertNode(T data) {
     Node<T>* newNode = new Node<T>(data);
-
-
     if (head == nullptr) {
         head = newNode;
-        count += 1;
-        return;
-
     }
-
-    Node<T>* temp = head;
-    while (temp->next != nullptr) {
-
-        temp = temp->next;
+    else {
+        Node<T>* temp = head;
+        while (temp->next != nullptr) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
     }
-
-    temp->next = newNode;
-    count += 1;
+    count++;
 }
 
 template<typename T>
 bool LinkedList<T>::isempty() {
-    if (head == nullptr) 
-        return false;
-    else
-        return true;
-    
+    return (head == nullptr);
 }
 
 template<typename T>
-void LinkedList<T>::deleteNode(T value) {
-    Node<T>* currNode = head;
-    Node<T>* prevNode = nullptr;
-
-    while (currNode != nullptr) {
-        prevNode = currNode;
-        currNode = currNode->next;
+void LinkedList<T>::deleteNode() {
+    if (head == nullptr) {
+        return; 
     }
-
-    // If the node is found, delete it
-    if (currNode != nullptr) {
-        if (currNode == head) {
-            head = currNode->next;
-        }
-        else {
-            prevNode->next = currNode->next;
-        }
-        delete currNode;
-    }
+    Node<T>* nodeToDelete = head;
+    head = head->next;
+    delete nodeToDelete;
+    count--;
 }
 template <typename T>
-void LinkedList<T>::printlist()
-{
+void LinkedList<T>::printlist() {
     Node<T>* temp = head;
-
-    if (head == NULL) {
+    if (temp == nullptr) {
         cout << "List empty" << endl;
-        return;
     }
-
-    while (temp != NULL) {
-        cout << temp->data << " ";
-        temp = temp->next;
+    else {
+        while (temp != nullptr) {
+            cout << temp->data << " ";
+            temp = temp->next;
+        }
+        cout << endl;
     }
 }
+
 template<typename T>
 bool LinkedList<T>::deleteLastNode() {
     if (head == nullptr) {
-        return false; 
+        return false;
     }
     if (head->next == nullptr) {
         delete head;
         head = nullptr;
-        count--;
-        return true;
     }
-    Node<T>* currNode = head;
-    Node<T>* prevNode = nullptr;
-    while (currNode->next != nullptr) {
-        prevNode = currNode;
-        currNode = currNode->next;
+    else {
+        Node<T>* currNode = head;
+        Node<T>* prevNode = nullptr;
+        while (currNode->next != nullptr) {
+            prevNode = currNode;
+            currNode = currNode->next;
+        }
+        prevNode->next = nullptr;
+        delete currNode;
     }
-    prevNode->next = nullptr;
-    delete currNode;
     count--;
     return true;
 }
 
 template<typename T>
 int LinkedList<T>::getlistcount() {
-    cout <<"count=" << count;
     return count;
 }
-
-
-
-

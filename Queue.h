@@ -5,7 +5,7 @@ class Queue {
 private:
     Node<T>* head;
     Node<T>* tail;
-    int count;
+    int count=0;
 
 public:
     Queue();

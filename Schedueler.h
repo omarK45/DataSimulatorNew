@@ -1,7 +1,8 @@
-#ifndef SCHEDUELER_H
-#define SCHEDUELER_H
+
 
 #include "LinkedList.h"
+#include "Queue.h"
+#include "SJF.h"
 #include "Process.h"
 #include "FCFS.h"
 #include "SJF.h"
@@ -14,17 +15,17 @@ protected:
     Queue<Process> newlist;
     Queue<Process> Blk;
     Queue<Process> TRM;
-    int timestep = 0;
+    int timestep ;
     int NF, NS, NR;
+    int M;
     FCFS* arrF;
     SJF* arrS;
     RoundRobin* arrR;
-    bool click;
+    Processor** arrP;
+   char x;
 
 public:
     Schedueler();
     void load();
     void simulate();
 };
-
-#endif

@@ -1,6 +1,8 @@
 #pragma once
 #include "Processor.h"
 #include "Process.h"
+#include "LinkedList.cpp"
+#include "Queue.cpp"
 #include "PrioQueue.h"
 
 class FCFS : public Processor
