@@ -6,6 +6,7 @@ template<typename T>
 Queue<T>::Queue() {
     head = nullptr;
     tail = nullptr;
+
 }
 
 template<typename T>
@@ -14,29 +15,38 @@ bool Queue<T>::isEmpty() {
 }
 
 template<typename T>
-void Queue<T>::enqueue(T value) {
-    Node<T>* newNode = new Node<T>(value);
+void Queue<T>::enqueue(T p) {
+    Node<T>* newNode = new Node<T>;
+    newNode->data = p;
+    newNode->next = nullptr; // make sure the new node points to null
     if (isEmpty()) {
         head = newNode;
         tail = newNode;
+        count++;
     }
     else {
         tail->next = newNode;
         tail = newNode;
+        count++;
     }
+   
 }
 
 template<typename T>
 T Queue<T>::dequeue() {
-    if (isEmpty()) {
+    if (head==nullptr) {
         cout << "Queue is empty" << endl;
+        return T();  // Return default value for type T
     }
     Node<T>* temp = head;
     T value = head->data;
     head = head->next;
     delete temp;
+    count--;
     return value;
 }
+
+
 
 template<typename T>
 T Queue<T>::peek() {
@@ -61,6 +71,13 @@ void Queue<T>::printQueue() {
         }
   
     }
+    cout<<endl;
+}
+
+template<typename T>
+int Queue<T>::getcount()
+{
+    return count;
 }
 
 template<typename T>

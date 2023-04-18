@@ -4,22 +4,23 @@
 #include "Queue.h"
 #include "Stack.h"
 #include "Process.h"
-template <class T>
+#include "string"
+
 class Processor
 {
-private:
-	LinkedList<Process> ReadyList;
-	Queue<Process> RunList;
-	int timestep;
-	int busytime;
-	bool status;
+protected:
+    int timestep;
+    int busytime;
+    bool status;
+    Queue<Process> RDY;
+    string Type;
 public:
-	Processor();
-	void virtual AddProcess(Process* P)=0;
-	void virtual ScheduleAlgo() = 0;
-	void SetStatus();
-	bool GetStatus();
-	int virtual PLoad();
-	int virtual PUtil();
+    void virtual AddProcessRd(Process P) = 0;
+    void virtual ScheduleAlgo() = 0;
+    void SetStatus(bool s);
+    bool GetStatus();
+    int virtual PLoad();
+    int virtual PUtil();
+    void virtual printRDY();
+    string return_Type();
 };
-
