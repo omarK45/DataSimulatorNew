@@ -1,7 +1,7 @@
 #include "FCFS.h"
 FCFS::FCFS()
 {
-    RunList = NULL;
+    RunList ;
     status = true;
 }
 Process* FCFS::ScheduleAlgo()

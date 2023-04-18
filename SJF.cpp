@@ -49,3 +49,6 @@ Process* SJF::getRun()
     //return the temp
     return temp;
 }
+void SJF::printRDY() {
+   
+}

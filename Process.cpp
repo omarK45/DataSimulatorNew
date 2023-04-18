@@ -4,7 +4,7 @@
 int Process::getprocess_id()const {
     return process_id;
 }
-float Process::getarrival_time() const {
+int Process::getarrival_time() const {
     return arrival_time;
 }
 float Process::getcpu_time() const {

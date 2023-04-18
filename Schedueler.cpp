@@ -6,13 +6,13 @@ using namespace std;
 
 Schedueler::Schedueler()
 {
-	timestep = 0;
+	timestep = 3;
 }
 
 
 void Schedueler::load()
 {
-	ifstream fin("C:\\Users\\My Lap\\Downloads\\smilator\\test3.txt"); // open input file
+	ifstream fin("C:\\Users\\Lenovo\\Desktop\\SENTCHANGE\\test3.txt"); // open input file
 
 	if (fin.fail())
 	{
@@ -68,21 +68,23 @@ void Schedueler::load()
 	fin.close();
 	//creating the processors
 	//arrP = new Processor*[NF+NS+NR];
-
-	for (int i = 0; i < NF; i++)
-	{
-		arrF[i] = new FCFS();
+	arrF = new FCFS[NF];
+	arrP = new Processor * [NF + NS + NR];
+	for (int i = 0; i < NF; i++) {
+		arrF[i] = FCFS();
+		arrP[i] = &arrF[i];
+	}
+	arrS = new SJF[NS];
+	for (int i = 0; i < NS; i++) {
+		arrS[i] = SJF();
+		arrP[NF + i] = &arrS[i];
+	}
+	arrR = new RoundRobin[NR];
+	for (int i = 0; i < NR; i++) {
+		arrR[i] = RoundRobin();
+		arrP[NF + NS + i] = &arrR[i];
 	}
 
-	for (int i = 0; i < NS; i++)
-	{
-		arrS[i] = new SJF();
-	}
-
-	for (int i = 0; i < NR; i++)
-	{
-		arrR[i] = new RoundRobin();
-	}
 
 	for (int i = 0; i < M; i++)
 	{
@@ -96,7 +98,7 @@ void Schedueler::load()
 		p->setio_requesttime(io_times[i][0]);
 		p->setio_duration(io_times[i][1]);
 
-		std::cout << "working " << i << endl;
+		cout << "working " << i << endl;
 
 	}
 
@@ -116,152 +118,45 @@ void Schedueler::load()
 }
 
 
-void Schedueler::simulate() {
+void Schedueler::simulate() 
+{
 	load();
 	char x;
-	while (x = ' ' && TRM.getCount() != M) {
-		//MOVING FROM NEWLIST TO RDY LISTS
-		while (!newlist.isEmpty())
-		{
-			Process* p;
-			newlist.peek(p);
+	if (!newlist.isEmpty()) {
 
-			if (p->getarrival_time() == timestep) {
-				for (int i = 0; i < NF; i++) {
-					Process* data;
-					newlist.dequeue(data);
-					arrF[i]->AddProcessRd(data);
+		cout << "working and count is= " << newlist.getCount() << endl;
+	}
 
-				}
-				for (int i = 0; i < NS; i++) {
-					if (!newlist.isEmpty()) {
-						Process* data;
-						newlist.dequeue(data);
-						arrS[i]->AddProcessRd(data);
-					}
-				}
-				for (int i = 0; i < NR; i++) {
-					if (!newlist.isEmpty()) {
-						Process* data;
-						newlist.dequeue(data);
-						arrR[i]->AddProcessRd(data);
-					}
+	//MOVING FROM NEWLIST TO RDY LISTS
+	while (!newlist.isEmpty())
+	{
+
+		if (newlist.peek()->getarrival_time() == timestep) {
+			if (newlist.getCount() != 0) {
+				for (int i = 0; i < NF + NS + NR; i++) {
+
+					Process* p = newlist.dequeue();
+					arrP[i]->AddProcessRd(p);
+
+
 				}
 			}
 		}
-		//if (!arrS[0]->ScheduleAlgo()->isEm) { ////////////////////////////////CHANGE IMPLEMENTATION
-			//std::cout << "full before" << endl;
-	}
-
-	////MOVES FROM RDY LISTS TO RUN LISTS BASED ON STATUS
-	for (int i = 0; i < NF; i++)
-	{
-		Process* data = arrF[i]->ScheduleAlgo();/////////////////////CHANGE IMPLEMENTATION
-	}
-	for (int i = 0; i < NS; i++)
-	{
-		Process* data = arrS[i]->ScheduleAlgo();
-	}
-
-
-	for (int i = 0; i < NR; i++)
-	{
-		Process* data = arrR[i]->ScheduleAlgo();
-	}
-
-	if (!arrS[0]->getRun())
-	{
-		std::cout << "full";
-	}
-	else
-		std::cout << "empty";
 
 
 
-	std::srand(time(0));
-	//RANDOM FUNCTION MOVES FROM RUN LIST TO DIFF LISTS BASED ON NUMBER GENERATED
-	for (int i = 0; i < NF; i++) {
-		int numR = rand() % 100 + 1;
-		if (1 <= numR && numR <= 15)
+
+		////MOVES FROM RDY LISTS TO RUN LISTS BASED ON STATUS
+		for (int i = 0; i < NF + NR + NS; i++)
 		{
-			Process* p;
-			p = arrF[i]->getRun();
-			Blk.enqueue(p);
-
+			arrP[i]->ScheduleAlgo();
 		}
-		if (20 <= numR && numR <= 30) {
-			//arrF[i].getReadyList().insertNode(arrF[i].getRun().dequeue());
-
+		if (newlist.isEmpty()) {
+			cout << "NEWLIST IS EMPTY";
 		}
-		if (50 <= numR && numR <= 60) {
 
-			Process* p;
-			p = arrF[i]->getRun();
-			TRM.enqueue(p);
-		}
 	}
-	for (int i = 0; i < NS; i++) {
-
-		int numR = rand() % 100 + 1;
-		if (1 <= numR && numR <= 15)
-		{
-			Process* p;
-			p = arrS[i]->getRun();
-			Blk.enqueue(p);
-		}
-		if (20 <= numR && numR <= 30) {
-			//arrS[i].getReadyList().insert(arrS[i].getRun().dequeue(), arrS[i].getRun().dequeue().getcpu_time());
-
-		}
-		if (50 <= numR && numR <= 60) {
-
-			Process* p;
-			p = arrS[i]->getRun();
-			TRM.enqueue(p);
-
-		}
-	}
-	for (int i = 0; i < NR; i++) {
-
-		int numR = rand() % 100 + 1;
-		if (1 <= numR && numR <= 15)
-		{
-			Process* p;
-			p = arrR[i]->getRun();
-			Blk.enqueue(p);
-
-		}
-		if (20 <= numR && numR <= 30) {
-			//arrR[i].getReadyList().enqueue(arrR[i].getRun().dequeue());
-
-		}
-		if (50 <= numR && numR <= 60) {
-			Process* p;
-			p = arrR[i]->getRun();
-			TRM.enqueue(p);
-		}
-	}
-	int numrb = rand() % 100 + 1;
-	if (numrb <= 10)
-	{
-		Process* p;
-		Blk.dequeue(p);
-	}
-	int numF = rand() % NF;
-
-	//for (int i = 0; i < NF; i++)
-	//{
-	//    if (!arrF[i].getReadyList().isempty()) {
-	//        if (arrF[i].getReadyList().getdata().getprocess_id() == numF) {
-	//            TRM.enqueue(arrF[i].getReadyList().getdata());
-	//            arrF[i].getReadyList().deleteNode();
-	//}
-
-	/*timestep++;
-	std::cout << "PRESS ENTER TO CONTINUE";
-	cin >> x;*/
 }
-
 
 
 

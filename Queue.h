@@ -30,40 +30,38 @@ public:
 		count++;
 		return true;
 	}
-	bool dequeue(T& item) {
+	T dequeue() {
 		if (isEmpty())
-			return false;
+			throw std::runtime_error("Queue is empty");
 
 		Node<T>* nodeToDeletePtr = front;
-		item = front->getItem();
+		T item = front->getItem();
 		front = front->getNext();
-		// Queue is not empty; remove front
-		if (nodeToDeletePtr == rear)	 // Special case: last node in the queue
+		if (nodeToDeletePtr == rear)
 			rear = nullptr;
 		delete nodeToDeletePtr;
 		count--;
-		return true;
+		return item;
 	}
+
+
 	bool isEmpty() {
 		if (!front)
 			return true;
 		return false;
 	}
-	bool peek(T& item) {
-		if (front) {
-			item = front->getItem();
-			return true;
-		}
-		return false;
+	T peek() {
+		if (!front)
+			throw std::runtime_error("Queue is empty");
 
+		T item = front->getItem();
+		return item;
 	}
+
 	~Queue()
 	{
 
-		T item;
-		//Free (Dequeue) all nodes in the queue
-		while (dequeue(item)) {
-		}
+		
 	}
 	Queue(const Queue<T>& LQ) //COPY CONSTRUCTOR
 	{

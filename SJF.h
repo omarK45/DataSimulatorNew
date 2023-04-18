@@ -15,4 +15,5 @@ public:
 	void AddProcessRd(Process* p);
 	void AddProcessRn(Process* p);
 	Process* getRun();
+	void printRDY();
 };

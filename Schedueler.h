@@ -19,9 +19,10 @@ private:
     int timestep ;
     int NF, NS, NR;
     int M;
-    FCFS** arrF;
-    SJF** arrS;
-    RoundRobin** arrR;
+    FCFS* arrF;
+    SJF* arrS;
+    RoundRobin* arrR;
+    Processor** arrP;
 
 public:
     Schedueler();

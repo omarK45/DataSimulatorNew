@@ -8,7 +8,8 @@ void RoundRobin::settimeslice(int t) {
 	timeslice = t;
 }
 
-Process* RoundRobin::ScheduleAlgo()
+Process* RoundRobin::ScheduleAlgo
+()
 {
 	if (ReadyList.isEmpty())
 	{
@@ -16,17 +17,13 @@ Process* RoundRobin::ScheduleAlgo()
 	}
 	if (status == true)
 	{
-		Process* p;
-		ReadyList.dequeue(p);
-		RunList = p;
+		RunList = ReadyList.dequeue();
 		status = false;
 		return NULL;
 	}
 	else 
 	{
-		Process* tmp = RunList;
-		ReadyList.dequeue(RunList);
-		return tmp;
+		return RunList;
 	}
 }
 void RoundRobin::AddProcessRd(Process* p)

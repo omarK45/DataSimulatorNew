@@ -17,7 +17,7 @@ public:
 
 
     int getprocess_id()const;
-    float getarrival_time() const;
+    int getarrival_time() const;
     float getresponse_time() const;
     float getwaiting_time() const;
     float getturnaround_time() const;
@@ -35,4 +35,8 @@ public:
     void settermination_time(float time);
     void setio_requesttime(int timestep);
     void setio_duration(float duration);
+    friend ostream& operator <<(ostream& output, const Process& p) {
+        output << p.getprocess_id();
+        return output;
+    }
 };
