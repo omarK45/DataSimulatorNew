@@ -1,6 +1,8 @@
 #include "SJF.h"
 
-
+SJF::SJF() {
+    Type="SJF";
+}
 void SJF::ScheduleAlgo()
 {
 	
@@ -26,4 +28,7 @@ PriorityQueue<Process>& SJF::getReadyList()
 Queue<Process>& SJF::getRun()
 {
 	return RunList;
+}
+void SJF::printRDY() {
+    ReadyList.printQueue();
 }

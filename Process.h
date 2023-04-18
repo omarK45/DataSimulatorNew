@@ -35,4 +35,9 @@ public:
     void settermination_time(float time);
     void setio_requesttime(int timestep);
     void setio_duration(float duration);
+    friend ostream&operator <<(ostream&output,const Process& p){
+        output<<p.getprocess_id();
+        return output;
+    }
+
 };

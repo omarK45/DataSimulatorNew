@@ -120,7 +120,7 @@ void Schedueler::load() {
 
 void Schedueler::simulate() {
     load();
-    while (x=' ' && TRM.getcount() != M) {
+    while (x==' ' && TRM.getcount() != M) {
         while (!newlist.isEmpty())
             //MOVING FROM NEWLIST TO RDY LISTS
         while (!newlist.isEmpty()) {

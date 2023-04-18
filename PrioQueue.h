@@ -76,4 +76,18 @@ public:
 	{
 		return front == NULL;
 	}
+    void printQueue() {
+        if (isEmpty()) {
+            cout << "Queue is empty";
+        }
+        else {
+            PrioQueueNode<T>* temp = front;
+            while (temp != nullptr) {
+                cout << temp->data << " , ";
+                temp = temp->next;
+            }
+        }
+        cout<<endl;
+    }
+
 };

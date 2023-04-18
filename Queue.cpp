@@ -71,6 +71,7 @@ void Queue<T>::printQueue() {
         }
   
     }
+    cout<<endl;
 }
 
 template<typename T>

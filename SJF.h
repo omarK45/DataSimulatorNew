@@ -10,9 +10,11 @@ private:
 	Queue<Process> RunList;
 	int priority;
 public:
+    SJF();
 	void virtual ScheduleAlgo();
 	void AddProcessRd(Process p);
 	void AddProcessRn(Process p);
 	PriorityQueue<Process>& getReadyList();
 	Queue<Process>& getRun();
+    void printRDY() ;
 };
