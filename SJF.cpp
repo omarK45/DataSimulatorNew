@@ -4,6 +4,7 @@ SJF::SJF()
 {
     status = true;
     RunList = NULL;
+    Type = "SJF";
 }
 Process* SJF::ScheduleAlgo()
 {
@@ -47,5 +48,5 @@ Process* SJF::getRun()
     return temp;
 }
 void SJF::printRDY() {
-   
+    ReadyList.printpq();
 }

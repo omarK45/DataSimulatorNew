@@ -93,6 +93,21 @@ public:
 	{
 		return count;
 	}
+	void printQueue() {
+		if (isEmpty()) {
+			cout << "Queue is empty";
+		}
+		else {
+			Node<T>* temp = front;
+			cout << "Queue=";
+			while (temp != nullptr) {
+				cout << temp->getItem() << " , ";
+				temp = temp->getNext();
+			}
+
+		}
+		cout << endl;
+	}
 
 	
 };

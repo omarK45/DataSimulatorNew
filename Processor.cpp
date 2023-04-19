@@ -17,7 +17,9 @@ void Processor::SetStatus(bool s)
 {
 	status = s;  //TRUE=IDLE FALSE=BUSY
 }
-
+string Processor::return_Type() {
+	return Type;
+}
 
 bool Processor::GetStatus()
 {

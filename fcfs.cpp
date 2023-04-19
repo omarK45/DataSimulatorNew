@@ -3,6 +3,7 @@ FCFS::FCFS()
 {
     RunList ;
     status = true;
+    Type = "FCFS";
 }
 Process* FCFS::ScheduleAlgo()
 {
@@ -44,6 +45,9 @@ Process* FCFS::getRun()
     RunList = NULL;
     //return the temp
     return temp;
+}
+void FCFS::printRDY() {
+    ReadyList.PrintList();
 }
 
 

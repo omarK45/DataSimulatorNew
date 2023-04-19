@@ -5,5 +5,6 @@
 #include "Processor.h"
 using namespace std;
 class UI {
-    void print(Processor* p[], int numprocessor, Queue<Process>* blk, Process* run[], PriorityQueue<Process>* trm, int timestep);
+public:
+    void print(Processor* p[], int numprocessor, Queue<Process*> blk, Process* run[], Queue<Process*> trm, int timestep);
 };

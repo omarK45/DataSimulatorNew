@@ -44,6 +44,7 @@ public:
 		count++;
 		return true;
 	}
+
 	Process* dequeue() {
 		if (isEmpty()) {
 			throw std::runtime_error("Queue is empty!");

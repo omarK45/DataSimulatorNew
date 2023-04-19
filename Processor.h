@@ -13,6 +13,7 @@ protected:
 	bool status;
 	bool Rd;
 	Process* RunList;
+	string Type;
 public:
 	Processor();
 	void virtual AddProcessRd(Process* P) = 0;
@@ -20,7 +21,9 @@ public:
 	void SetStatus(bool s);
 	bool GetStatus();
 	bool Empty();
-	virtual Process* getRun() = 0;
 	int virtual PLoad();
 	int virtual PUtil();
+	string return_Type();
+	virtual Process* getRun()=0;
+	void virtual printRDY() = 0;
 };

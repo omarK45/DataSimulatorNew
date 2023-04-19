@@ -1,4 +1,5 @@
 #include "Schedueler.h"
+#include "UI.h"
 #include <iostream>
 #include <fstream>
 
@@ -6,12 +7,8 @@ using namespace std;
 
 Schedueler::Schedueler()
 {
-	timestep = 3;
-	if (M >= NF + NS + NR) {
-		n = NF + NS + NR;
-	}
-	else
-		n = M;
+	timestep = 0;
+	
 }
 
 
@@ -126,64 +123,63 @@ void Schedueler::load()
 void Schedueler::simulate()
 {
 	load();
-	char x;
-	if (!newlist.isEmpty()) {
+	while (TRM.getCount() != M) {
+		char x;
+		if (!newlist.isEmpty()) {
 
-		cout << "working and count is= " << newlist.getCount() << endl;
-	}
-	int c = newlist.getCount();
-	//MOVING FROM NEWLIST TO RDY LISTS
-	if (!newlist.isEmpty())
-
-		for (int i = 0; i < c; i++) {
-
-			Process* p = newlist.dequeue();
-			arrP[i]->AddProcessRd(p);
+			cout << "working and count is= " << newlist.getCount() << endl;
 		}
-	if (newlist.isEmpty()) {
-		cout << "NEWLIST IS EMPTY" << endl;
-	}
-	if (!arrP[0]->Empty()) {
-		cout << "ready is not empty before" << endl;
-	}
-	////MOVES FROM RDY LISTS TO RUN LISTS BASED ON STATUS
-	for (int i = 0; i < NF + NS + NR; i++) {
-		if (arrP[i]->ScheduleAlgo() == NULL) {
-			break;
-		};
-		arrP[i]->ScheduleAlgo();
+		int c = newlist.getCount();
+		//MOVING FROM NEWLIST TO RDY LISTS
+		if (!newlist.isEmpty())
 
-	}
-	if (!arrP[0]->Empty()) {
-		cout << "ready is empty after" << endl;
-	}
-	srand(time(0));
+			for (int i = 0; i < c; i++) {
 
-	//RANDOM FUNCTION MOVES FROM RUN LIST TO DIFF LISTS BASED ON NUMBER GENERATED
-	for (int i = 0; i < NF + NS + NR; i++) {
-		while (arrP[i]->getRun() != NULL && !arrP[i]->Empty() ) {
-			int numR = (rand() % 100) + 1;
-			cout << "Rand is =" << numR << endl;
-			if (numR >= 1 && numR <= 15) {
-
-				Blk.enqueue(arrP[i]->getRun());
+				Process* p = newlist.dequeue();
+				arrP[i]->AddProcessRd(p);
 			}
-
-			if (numR >= 20 && numR <= 30) {
-
-				arrP[i]->AddProcessRd(arrP[i]->getRun());
-
-			}
-			if (numR >= 50 && numR <= 60) {
-
-				TRM.enqueue(arrP[i]->getRun());
-			}
+		if (newlist.isEmpty()) {
+			cout << "NEWLIST IS EMPTY" << endl;
 		}
-	}
+		if (!arrP[0]->Empty()) {
+			cout << "ready is not empty before" << endl;
+		}
+		////MOVES FROM RDY LISTS TO RUN LISTS BASED ON STATUS
+		for (int i = 0; i < NF + NS + NR; i++) {
+			if (arrP[i]->ScheduleAlgo() == NULL) {
+				break;
+			};
+			arrP[i]->ScheduleAlgo();
 
-		if (!arrP[1]->Empty()) {
-			cout << "Ready is not empty" << endl;
+		}
+		if (!arrP[0]->Empty()) {
+			cout << "ready is empty after" << endl;
+		}
+		srand(time(0));
 
+		//RANDOM FUNCTION MOVES FROM RUN LIST TO DIFF LISTS BASED ON NUMBER GENERATED
+		for (int i = 0; i < NF + NS + NR; i++) {
+			while (arrP[i]->getRun() != NULL && !arrP[i]->Empty()) {
+				int numR = (rand() % 100) + 1;
+				cout << "Rand is =" << numR << endl;
+				if (numR >= 1 && numR <= 15) {
+
+					Blk.enqueue(arrP[i]->getRun());
+				}
+
+				if (numR >= 20 && numR <= 30) {
+
+					arrP[i]->AddProcessRd(arrP[i]->getRun());
+					if (!arrP[i]->Empty()) {
+						cout << "Ready is Not Empty" << endl;
+					}
+
+				}
+				if (numR >= 50 && numR <= 60) {
+
+					TRM.enqueue(arrP[i]->getRun());
+				}
+			}
 		}
 		if (!Blk.isEmpty()) {
 
@@ -194,6 +190,12 @@ void Schedueler::simulate()
 			cout << "TRM is not empty" << endl;
 		}
 	}
+	Process* *run;
+	for (int i = 0; i < n; i++) {
+		run[i] = arrP[i]->getRun();
+		{
+			cin.ignore();
+		}
 
 
 
@@ -202,5 +204,5 @@ void Schedueler::simulate()
 
 
 
-
-
+	}
+	}

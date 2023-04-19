@@ -3,6 +3,7 @@
 RoundRobin::RoundRobin()
 {
 	status = true;
+	Type = "RoundRobin";
 }
 void RoundRobin::settimeslice(int t) {
 	timeslice = t;
@@ -47,6 +48,11 @@ Process* RoundRobin::getRun()
 	RunList = NULL;
 	//return the temp
 	return temp;
+}
+void RoundRobin::printRDY() {
+	while (!ReadyList.isEmpty()) {
+		cout << ReadyList.dequeue()->getprocess_id() << " ";
+	}
 }
 
 
